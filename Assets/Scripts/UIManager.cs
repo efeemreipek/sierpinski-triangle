@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Slider amountSlider;
     [SerializeField] private Text amountText;
+    [SerializeField] private Toggle drawRuntimeToggle;
 
     private void Start()
     {
@@ -22,6 +23,12 @@ public class UIManager : MonoBehaviour
         int amount = sliderAmount * 100;
         amountText.text = $"{amount}";
         gameManager.SetAmount(amount);
+
+        if (drawRuntimeToggle.isOn)
+        {
+            gameManager.ClearPoints();
+            gameManager.InstantiatePoints();
+        }
 
     }
 }
